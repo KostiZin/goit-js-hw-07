@@ -42,8 +42,11 @@ console.log(galleryItems);
 const ulEl = document.querySelector(`.gallery`);
 
 const markup = galleryItems.map(
-  ({ preview, original, description }) =>
-    `<li><img class="js-target gallery__image" src="${preview}" alt="${description}"></li>`
+  ({ preview, original, description }) => `<li class="gallery__item">
+  <a class="gallery__link" href="${preview}">
+  <img class="gallery__image" src="${original}" alt="${description}" data-source="${original}"/>
+  </a>
+</li>`
 );
 
 ulEl.insertAdjacentHTML(`beforeend`, markup.join(``));
@@ -74,10 +77,8 @@ function handleShow(evt) {
   );
 
   const instance = basicLightbox.create(`
-  <li class="gallery__item"><a class="gallery__link" href="${currentItem.preview}"><img class="gallery__image" src="${currentItem.original}" alt="${currentItem.description}" data-source="${currentItem.original}"/>
-  </a>
-</li>
-`);
+  <li><img class="gallery__image" src="${currentItem.original}" alt="${currentItem.description}" data-source="${currentItem.original}"/>
+  </li>`);
 
   instance.show();
 }
