@@ -14,19 +14,19 @@ const markup = galleryItems.map(
 </li>`
 );
 
+// Add a new markup to HTML
+
 ulEl.insertAdjacentHTML(`beforeend`, markup.join(``));
 
-// // Create a function from the eventListener
+// We do not add eventListener to SimpleLightbox !!!!!!! only to apply preventDefault
 
-function handleShow(evt) {
+ulEl.addEventListener("click", (evt) => {
   evt.preventDefault();
-}
-
-ulEl.addEventListener(`click`, handleShow);
+});
 
 // Add settings from the SimpleLightbox
 
-let lightbox = new SimpleLightbox(".gallery a", {
+new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
 });
